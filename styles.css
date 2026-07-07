@@ -43,11 +43,11 @@ h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transf
 
 .hero-stage { flex: 1; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
 .hero-portrait {
-  position: absolute; right: -6%; bottom: 0; z-index: 1;
-  width: min(88vw, 460px); height: auto;
+  position: absolute; right: -7%; top: 0; z-index: 1;
+  width: min(96vw, 470px); height: auto;
   filter: brightness(1.02);
-  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 98%);
+  mask-image: linear-gradient(180deg, #000 70%, transparent 98%);
 }
 .hero-text { position: relative; z-index: 2; padding: 26px 20px 30px; max-width: 640px; }
 .kicker {
