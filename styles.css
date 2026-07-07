@@ -146,8 +146,8 @@ section h2 { font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1.04; margin-bott
 .site-footer address { font-style: normal; font-size: 0.9rem; color: var(--gris); }
 .site-footer a { color: var(--creme); }
 .socials { margin-top: 10px; font-weight: 600; }
-.credit { font-size: 0.8rem; color: rgba(244, 239, 230, 0.45); border-top: 1px solid var(--filet); padding-top: 20px; margin-top: 24px; }
-.credit a { color: rgba(244, 239, 230, 0.7); }
+.credit { font-size: 0.8rem; color: rgba(244, 239, 230, 0.66); border-top: 1px solid var(--filet); padding-top: 20px; margin-top: 24px; }
+.credit a { color: rgba(244, 239, 230, 0.85); }
 
 /* Reveals */
 [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
