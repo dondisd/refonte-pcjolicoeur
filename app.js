@@ -1,4 +1,16 @@
-// PC Jolicoeur v4 — bookends cinématiques : reveals + maison 3D persistante.
+// PC Jolicoeur v5 — bookends + dispositions Axion : horloge locale, reveals, maison 3D.
+// Horloge locale (réf. Axion « London time ») : heure de Montréal dans la nav.
+(function () {
+  var el = document.getElementById('heure');
+  if (!el) return;
+  function maj() {
+    var t = new Intl.DateTimeFormat('fr-CA', { timeZone: 'America/Montreal', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+    el.textContent = 'Il est ' + t.replace(':', ' h ') + ' à Saint-Hubert';
+  }
+  maj();
+  setInterval(maj, 30000);
+})();
+
 // Maison 3D : rotation continue + pointeur + scroll (CSS 3D pur, un seul transform par frame).
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

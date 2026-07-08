@@ -34,15 +34,58 @@ a { color: inherit; }
 h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.02; }
 .or { color: var(--or); }
 
-/* ---------- Header fixe ---------- */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 80;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px;
-  background: linear-gradient(180deg, rgba(14, 13, 11, 0.8), transparent);
+/* ---------- Nav pill flottante (disposition réf. Axion, nos couleurs) ---------- */
+.navpill { position: fixed; top: 10px; left: 0; right: 0; z-index: 80; padding: 0 10px; }
+.navpill-in {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(14, 13, 11, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--filet-doux);
+  border-radius: 999px;
+  padding: 8px 10px 8px 18px;
 }
-.logo { width: 140px; height: auto; }
-.top-tel { font-weight: 700; font-size: 0.92rem; text-decoration: none; border-bottom: 2px solid var(--or); padding-bottom: 2px; }
+.logo { width: 124px; height: auto; }
+.nav-droite { display: flex; align-items: center; gap: 14px; }
+.heure { display: none; font-size: 0.82rem; color: var(--gris); }
+.top-tel { font-weight: 700; font-size: 0.9rem; text-decoration: none; border-bottom: 2px solid var(--or); padding-bottom: 2px; }
+
+/* ---------- Bouton « text-roll » + cercle-flèche qui pivote (réf. Axion) ---------- */
+.btn-roll {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--or); color: var(--charbon);
+  border-radius: 999px; padding: 8px 8px 8px 22px;
+  font-weight: 700; font-size: 0.92rem; letter-spacing: 0.03em; text-transform: uppercase;
+  text-decoration: none; min-height: 48px;
+  transition: background 0.3s ease;
+}
+.btn-roll:hover, .btn-roll:focus-visible { background: var(--or-vif); }
+.btn-roll .mots { display: block; overflow: hidden; height: 20px; }
+.btn-roll .pile { display: block; transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
+.btn-roll .pile i { display: block; height: 20px; line-height: 20px; font-style: normal; white-space: nowrap; }
+.btn-roll:hover .pile { transform: translateY(-20px); }
+.btn-roll .fleche {
+  width: 32px; height: 32px; border-radius: 50%; flex: none;
+  background: var(--charbon); color: var(--or);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.btn-roll .fleche svg { width: 15px; height: 15px; }
+.btn-roll:hover .fleche { transform: rotate(-45deg); }
+.btn-roll.petit { min-height: 40px; padding: 6px 6px 6px 16px; font-size: 0.82rem; }
+.btn-roll.petit .fleche { width: 28px; height: 28px; }
+
+/* ---------- Badges numérotés de section (réf. Axion) ---------- */
+.badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.badge-num {
+  width: 27px; height: 27px; border-radius: 50%; flex: none;
+  background: var(--or); color: var(--charbon);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.78rem;
+}
+.badge-pill { border: 1px solid var(--filet-doux); border-radius: 999px; padding: 6px 14px; font-size: 0.8rem; font-weight: 600; color: var(--gris); }
+.badge-pill a { text-decoration: none; }
 
 /* ---------- Blocs immersifs (hero + finale) ---------- */
 .immersif { position: relative; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 96px 16px 30px; }
@@ -96,21 +139,19 @@ h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transf
 
 /* ---------- Sections conventionnelles ---------- */
 section h2 { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: 26px; }
-.parcours-sec, .services, .pourquoi, .equipe, .faq { padding: 76px 20px 60px; max-width: 1120px; margin: 0 auto; }
+.services, .pourquoi, .equipe, .faq, .groupe-lien, .interne-tete, .interne-cta { padding: 76px 20px 60px; max-width: 1120px; margin: 0 auto; }
 
-/* Parcours en cartes d'étapes */
-.etapes { display: grid; gap: 14px; }
-.etape-carte {
-  display: grid; grid-template-columns: 132px 1fr; gap: 18px; align-items: center;
-  border: 1px solid var(--filet-doux); background: var(--charbon2); border-radius: 14px;
-  padding: 16px;
-  transition: transform 0.18s ease, border-color 0.18s ease;
-}
-.etape-carte:hover { transform: translateY(-4px); border-color: var(--or); }
-.etape-carte img { width: 132px; height: 176px; object-fit: cover; border-radius: 10px; }
-.etape-carte h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
-.etape-carte p:last-child { color: var(--gris); font-size: 0.92rem; }
-.etape-carte .etape { margin-bottom: 6px; }
+/* Le groupe → page dédiée (disposition Axion about) */
+.groupe-grille { display: grid; gap: 22px; align-items: center; }
+.groupe-texte .lede { max-width: 52ch; margin-bottom: 20px; }
+.groupe-img { width: 100%; height: auto; border-radius: 14px; max-height: 420px; object-fit: cover; object-position: 50% 30%; }
+
+/* Pages internes */
+.page-interne { padding-top: 30px; }
+.interne-tete { padding-bottom: 0; padding-top: 110px; }
+.interne-tete h1 { font-size: clamp(2.2rem, 9vw, 4rem); }
+.interne-cta .verre { max-width: 720px; margin: 0 auto; }
+.interne-cta h2 { margin-bottom: 18px; }
 
 /* Services */
 .service-grid { display: grid; gap: 12px; }
@@ -123,8 +164,21 @@ section h2 { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: 26px; }
 .s-card:hover, .s-card:focus-visible { transform: perspective(700px) rotateX(2.4deg) translateY(-4px); border-color: var(--or); }
 .s-num { position: absolute; top: 18px; right: 20px; color: var(--or); opacity: 0.55; font-size: 1.5rem; }
 .s-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
-.s-card p { color: var(--gris); font-size: 0.94rem; max-width: 46ch; margin-bottom: 14px; }
-.s-go { color: var(--or); font-weight: 700; font-size: 0.9rem; }
+.s-card p { color: var(--gris); font-size: 0.94rem; max-width: 46ch; margin-bottom: 16px; }
+/* Bouton extensible au survol (réf. cartes Axion) */
+.s-exp {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 38px; width: 38px; border-radius: 999px; overflow: hidden;
+  background: var(--or); color: var(--charbon);
+  padding-left: 11px;
+  transition: width 0.3s ease-in-out;
+  white-space: nowrap;
+}
+.s-exp svg { width: 15px; height: 15px; flex: none; transform: rotate(-45deg); transition: transform 0.3s ease-in-out; }
+.s-exp em { font-style: normal; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; opacity: 0; transition: opacity 0.3s ease 0.1s; }
+.s-card:hover .s-exp, .s-card:focus-visible .s-exp { width: 152px; }
+.s-card:hover .s-exp svg, .s-card:focus-visible .s-exp svg { transform: rotate(0deg); }
+.s-card:hover .s-exp em, .s-card:focus-visible .s-exp em { opacity: 1; }
 
 /* Pourquoi */
 .arg-grid { display: grid; gap: 26px; }
@@ -191,18 +245,17 @@ section h2 { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: 26px; }
 
 /* ---------- Desktop ---------- */
 @media (min-width: 860px) {
-  .topbar { padding: 20px 34px; }
+  .navpill { top: 14px; }
+  .heure { display: inline; }
   .hero-imm { justify-content: flex-start; padding-left: 6vw; align-items: center; }
   .hero-imm .imm-bg { object-position: 68% 20%; }
   .verre { max-width: 640px; padding: 38px 36px 32px; }
   .v-finale { max-width: 1120px; padding: 56px 54px 40px; }
-  .etapes { grid-template-columns: repeat(3, 1fr); }
-  .etape-carte { grid-template-columns: 1fr; align-items: start; }
-  .etape-carte img { width: 100%; height: 210px; }
   .service-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .arg-grid { grid-template-columns: repeat(3, 1fr); }
   .faq-grid { grid-template-columns: 1fr 1fr; }
-  .parcours-sec, .services, .pourquoi, .equipe, .faq { padding-left: 34px; padding-right: 34px; }
+  .groupe-grille { grid-template-columns: 1.1fr 1fr; gap: 40px; }
+  .services, .pourquoi, .equipe, .faq, .groupe-lien, .interne-tete, .interne-cta { padding-left: 34px; padding-right: 34px; }
 }
 
 /* ---------- Reduced motion ---------- */
