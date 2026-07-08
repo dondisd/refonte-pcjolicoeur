@@ -38,6 +38,36 @@
   })(start);
 })();
 
+// Effets de scroll : barre de progression + parallax des fonds immersifs.
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+  var bar = document.createElement('div');
+  bar.className = 'progress';
+  document.body.appendChild(bar);
+  var bgs = Array.prototype.slice.call(document.querySelectorAll('.imm-bg'));
+  var ticking = false;
+  function apply() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    bgs.forEach(function (img) {
+      var r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var shift = r.top * -0.16;
+      img.style.transform = 'translateY(' + shift.toFixed(1) + 'px) scale(1.12)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+  window.addEventListener('resize', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+  apply();
+})();
+
 // Reveals au scroll avec cascade. Rien de bloquant.
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
