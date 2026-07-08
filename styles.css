@@ -4,20 +4,23 @@
 @font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/public-sans-600.woff2') format('woff2'); }
 @font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/public-sans-700.woff2') format('woff2'); }
 
-/* Groupe PC Jolicoeur v3 — « le chemin vers tes clés » (réf. Urban Jungle / Future-State).
-   Une seule expérience continue : scènes plein écran en crossfade + push-in au scroll,
-   panneaux de verre or/charbon, maison 3D CSS persistante. Sans JS : flux normal. */
+/* Groupe PC Jolicoeur v4 — « bookends cinématiques » (feedback Dondi 2026-07-08) :
+   hero et finale immersifs plein écran (conservés de la v3), sections conventionnelles
+   au milieu, scènes IA du parcours en images d'étapes, maison 3D persistante. */
 :root {
   --charbon: #0e0d0b;
+  --charbon2: #171512;
   --or: #c9a25a;
   --or-vif: #dcb571;
   --creme: #f4efe6;
-  --gris: #b5afa3;
-  --verre: rgba(14, 13, 11, 0.58);
+  --gris: #a89f8e;
+  --verre: rgba(14, 13, 11, 0.62);
   --filet: rgba(201, 162, 90, 0.5);
+  --filet-doux: rgba(244, 239, 230, 0.14);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Public Sans', system-ui, sans-serif;
   background: var(--charbon);
@@ -28,7 +31,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.02; }
+h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.02; }
 .or { color: var(--or); }
 
 /* ---------- Header fixe ---------- */
@@ -41,28 +44,19 @@ h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: upp
 .logo { width: 140px; height: auto; }
 .top-tel { font-weight: 700; font-size: 0.92rem; text-decoration: none; border-bottom: 2px solid var(--or); padding-bottom: 2px; }
 
-/* ---------- Stage des scènes ---------- */
-.stage { position: fixed; inset: 0; z-index: 1; overflow: hidden; background: var(--charbon); }
-.scene { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
-.scene:first-child { opacity: 1; }
-.scene img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-.scene::after {
+/* ---------- Blocs immersifs (hero + finale) ---------- */
+.immersif { position: relative; min-height: 100svh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 96px 16px 30px; }
+.imm-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.immersif::before {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(14, 13, 11, 0.42) 0%, rgba(14, 13, 11, 0.18) 40%, rgba(14, 13, 11, 0.6) 100%);
+  background: linear-gradient(180deg, rgba(14, 13, 11, 0.4) 0%, rgba(14, 13, 11, 0.12) 40%, rgba(14, 13, 11, 0.62) 100%);
 }
-.s-pc img { object-position: 50% 18%; }
+.finale { align-items: center; }
+.finale .imm-bg { object-position: 50% 50%; }
 
-/* ---------- Panneaux de verre ---------- */
-.parcours { position: relative; z-index: 10; }
-.panneau {
-  min-height: 150svh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 90px 16px;
-  pointer-events: none;
-}
 .verre {
-  pointer-events: auto;
-  width: 100%; max-width: 600px;
+  position: relative;
+  width: 100%; max-width: 640px;
   background: var(--verre);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
@@ -71,12 +65,17 @@ h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: upp
   padding: 30px 26px 26px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
 }
+/* Finale : le panneau prend l'écran (demande Dondi : plus d'espace) */
+.v-finale { max-width: 1060px; min-height: 78svh; display: flex; flex-direction: column; justify-content: center; padding: 44px 30px 34px; }
+.v-finale h2 { font-size: clamp(2.3rem, 9.5vw, 4.6rem); }
+.v-finale .lede { font-size: 1.05rem; max-width: 52ch; }
+
 .kicker { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--or); margin-bottom: 12px; }
 .etape { font-family: 'Anton', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
 .verre h1 { font-size: clamp(2.6rem, 11vw, 4.6rem); margin-bottom: 12px; }
-.verre h2 { font-size: clamp(1.7rem, 7vw, 2.7rem); margin-bottom: 12px; }
+.verre h2 { margin-bottom: 12px; }
 .lede { color: var(--creme); font-size: 0.98rem; margin-bottom: 16px; max-width: 46ch; }
-.cta-row { margin-bottom: 10px; }
+.cta-row { margin-bottom: 12px; }
 .btn-or {
   display: inline-block; background: var(--or); color: var(--charbon);
   font-weight: 700; font-size: 0.98rem; letter-spacing: 0.04em; text-transform: uppercase;
@@ -84,24 +83,70 @@ h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: upp
   transition: transform 0.16s ease, background 0.16s ease;
 }
 .btn-or:hover, .btn-or:focus-visible { background: var(--or-vif); transform: translateY(-2px); }
-.preuve { font-size: 0.85rem; color: var(--gris); }
+.preuve { font-size: 0.88rem; color: var(--gris); }
 .preuve a { color: var(--creme); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-.indice { margin-top: 16px; font-size: 0.85rem; font-style: italic; color: var(--or-vif); }
-
-.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-.chips li { border: 1.5px solid var(--filet); border-radius: 999px; padding: 8px 16px; font-size: 0.85rem; font-weight: 700; }
-.args { list-style: none; display: grid; gap: 10px; }
-.args li { border-left: 3px solid var(--or); padding-left: 12px; font-size: 0.92rem; color: var(--gris); }
-.args strong { color: var(--creme); display: block; }
-
-.equipe-mini { display: flex; gap: 10px; margin: 6px 0 12px; }
-.equipe-mini figure { flex: 1; }
-.equipe-mini img { border-radius: 10px; width: 100%; height: 120px; object-fit: cover; object-position: 50% 12%; }
-.equipe-mini figcaption { font-size: 0.78rem; font-weight: 700; margin-top: 6px; text-align: center; }
-.handles { font-size: 0.85rem; color: var(--gris); }
-.handles a { color: var(--creme); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-.credit { font-size: 0.76rem; color: var(--gris); border-top: 1px solid rgba(244, 239, 230, 0.16); padding-top: 14px; margin-top: 16px; }
+.socials { margin-top: 8px; font-weight: 700; font-size: 0.9rem; }
+.socials a { text-decoration: underline; text-underline-offset: 3px; }
+.credit { font-size: 0.78rem; color: var(--gris); border-top: 1px solid var(--filet-doux); padding-top: 14px; margin-top: 16px; }
 .credit a { color: var(--creme); }
+
+.stagger { opacity: 0.012; transform: translateY(14px); animation: rise 0.7s ease-out forwards; }
+.s2 { animation-delay: 0.2s; }
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Sections conventionnelles ---------- */
+section h2 { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: 26px; }
+.parcours-sec, .services, .pourquoi, .equipe, .faq { padding: 76px 20px 60px; max-width: 1120px; margin: 0 auto; }
+
+/* Parcours en cartes d'étapes */
+.etapes { display: grid; gap: 14px; }
+.etape-carte {
+  display: grid; grid-template-columns: 132px 1fr; gap: 18px; align-items: center;
+  border: 1px solid var(--filet-doux); background: var(--charbon2); border-radius: 14px;
+  padding: 16px;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.etape-carte:hover { transform: translateY(-4px); border-color: var(--or); }
+.etape-carte img { width: 132px; height: 176px; object-fit: cover; border-radius: 10px; }
+.etape-carte h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+.etape-carte p:last-child { color: var(--gris); font-size: 0.92rem; }
+.etape-carte .etape { margin-bottom: 6px; }
+
+/* Services */
+.service-grid { display: grid; gap: 12px; }
+.s-card {
+  display: block; text-decoration: none;
+  border: 1px solid var(--filet-doux); background: var(--charbon2); border-radius: 14px;
+  padding: 24px 22px 20px; position: relative;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.s-card:hover, .s-card:focus-visible { transform: perspective(700px) rotateX(2.4deg) translateY(-4px); border-color: var(--or); }
+.s-num { position: absolute; top: 18px; right: 20px; color: var(--or); opacity: 0.55; font-size: 1.5rem; }
+.s-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+.s-card p { color: var(--gris); font-size: 0.94rem; max-width: 46ch; margin-bottom: 14px; }
+.s-go { color: var(--or); font-weight: 700; font-size: 0.9rem; }
+
+/* Pourquoi */
+.arg-grid { display: grid; gap: 26px; }
+.arg-grid article { border-left: 3px solid var(--or); padding-left: 18px; }
+.arg-grid h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.arg-grid p { color: var(--gris); font-size: 0.95rem; max-width: 52ch; }
+
+/* Équipe */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.team-grid img { width: 100%; height: auto; border-radius: 10px; filter: grayscale(0.15); transition: filter 0.25s ease, transform 0.25s ease; }
+.team-grid figure:hover img { filter: grayscale(0); transform: scale(1.02); }
+.team-grid figcaption { padding-top: 10px; }
+.team-grid strong { display: block; font-size: 0.92rem; line-height: 1.3; }
+.team-grid span { color: var(--gris); font-size: 0.78rem; }
+.equipe-note { margin-top: 22px; color: var(--gris); max-width: 62ch; }
+.equipe-note a { color: var(--creme); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* FAQ */
+.faq-grid { display: grid; gap: 22px; }
+.faq-grid div { border-top: 1px solid var(--filet-doux); padding-top: 16px; }
+.faq-grid dt { font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; color: var(--or-vif); }
+.faq-grid dd { color: var(--gris); font-size: 0.95rem; max-width: 62ch; }
 
 /* ---------- Maison 3D ---------- */
 .maison3d {
@@ -140,22 +185,29 @@ h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: upp
     rgba(201, 162, 90, 0.14);
 }
 
-/* ---------- Fallback sans JS / reduced-motion : flux normal ---------- */
-body:not(.scrolly) .stage { display: none; }
-body:not(.scrolly) .panneau { min-height: 0; padding: 40px 16px; }
-body:not(.scrolly) { background: var(--charbon); }
-body:not(.scrolly) .verre { background: rgba(23, 21, 18, 0.94); }
-body.flat .maison3d { display: none; }
+/* Reveals */
+[data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+[data-reveal].in { opacity: 1; transform: translateY(0); }
 
 /* ---------- Desktop ---------- */
 @media (min-width: 860px) {
   .topbar { padding: 20px 34px; }
+  .hero-imm { justify-content: flex-start; padding-left: 6vw; align-items: center; }
+  .hero-imm .imm-bg { object-position: 68% 20%; }
   .verre { max-width: 640px; padding: 38px 36px 32px; }
-  .panneau { justify-content: flex-start; padding-left: 8vw; }
-  .panneau:nth-child(even) { justify-content: flex-end; padding-right: 8vw; }
+  .v-finale { max-width: 1120px; padding: 56px 54px 40px; }
+  .etapes { grid-template-columns: repeat(3, 1fr); }
+  .etape-carte { grid-template-columns: 1fr; align-items: start; }
+  .etape-carte img { width: 100%; height: 210px; }
+  .service-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .arg-grid { grid-template-columns: repeat(3, 1fr); }
+  .faq-grid { grid-template-columns: 1fr 1fr; }
+  .parcours-sec, .services, .pourquoi, .equipe, .faq { padding-left: 34px; padding-right: 34px; }
 }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .stagger { animation: none; opacity: 1; transform: none; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
