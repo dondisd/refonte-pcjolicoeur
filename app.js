@@ -36,7 +36,8 @@
       var t0 = i / N, t1 = (i + 1) / N;
       var lp = clamp((p - t0) / (t1 - t0), 0, 1);
       var y, op;
-      if (lp < 0.22) { var e = lp / 0.22; y = (1 - e) * 46; op = e; }
+      if (i === 0 && lp < 0.22) { y = 0; op = 1; } // le panneau hero est visible dès le chargement
+      else if (lp < 0.22) { var e = lp / 0.22; y = (1 - e) * 46; op = e; }
       else if (lp > 0.86 && i < N - 1) { var s = (lp - 0.86) / 0.14; y = -s * 40; op = 1 - s; }
       else { y = 0; op = 1; }
       pa.style.opacity = op.toFixed(3);

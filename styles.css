@@ -96,7 +96,7 @@ h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: upp
 
 .equipe-mini { display: flex; gap: 10px; margin: 6px 0 12px; }
 .equipe-mini figure { flex: 1; }
-.equipe-mini img { border-radius: 10px; }
+.equipe-mini img { border-radius: 10px; width: 100%; height: 120px; object-fit: cover; object-position: 50% 12%; }
 .equipe-mini figcaption { font-size: 0.78rem; font-weight: 700; margin-top: 6px; text-align: center; }
 .handles { font-size: 0.85rem; color: var(--gris); }
 .handles a { color: var(--creme); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
