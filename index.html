@@ -4,113 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Groupe PC Jolicoeur — Ton hypothèque, mon service</title>
-  <meta name="description" content="Pierre-Charles Jolicoeur et son équipe de courtiers hypothécaires magasinent ton prêt auprès de la grande majorité des prêteurs. Préqualification, renouvellement, refinancement. Sans frais : le courtier est payé par le prêteur.">
-  <meta property="og:title" content="Groupe PC Jolicoeur — Concept de refonte">
-  <meta property="og:description" content="Ton hypothèque, mon service.">
+  <meta name="description" content="Pierre-Charles Jolicoeur et son équipe de courtiers hypothécaires magasinent ton prêt auprès de la grande majorité des prêteurs. Du rêve jusqu'aux clés : préqualification, renouvellement, refinancement. Sans frais : le courtier est payé par le prêteur.">
+  <meta property="og:title" content="Groupe PC Jolicoeur — Concept de refonte 3D">
+  <meta property="og:description" content="Ton hypothèque, mon service. Du rêve jusqu'aux clés.">
   <meta property="og:image" content="assets/pc.webp">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/public-sans-400.woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/pc-700.webp" imagesrcset="assets/pc-700.webp 700w, assets/pc.webp 1200w" imagesizes="(min-width: 860px) 520px, 88vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/pc-700.webp" imagesrcset="assets/pc-700.webp 700w, assets/pc.webp 1200w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <main>
-    <!-- HERO AFFICHE : titre Anton XXL, portrait réel de PC (fond noir studio fondu au charbon),
-         bandeau de preuve, UN CTA -->
-    <section class="hero">
-      <header class="topbar stagger s1">
-        <img class="logo" src="assets/logo-light.png" alt="Groupe PC Jolicoeur" width="160" height="42">
-        <a class="top-tel" href="tel:4388675026">438 867-5026</a>
-      </header>
-      <div class="hero-stage">
-        <div class="hero-text">
-          <p class="kicker stagger s2">Courtiers hypothécaires · Québec</p>
-          <h1 class="stagger s2">Ton<br>hypothèque,<br><span class="or">mon service.</span></h1>
-          <p class="hero-sub stagger s3">PC et son équipe magasinent ton prêt auprès de la grande majorité des prêteurs. Toi, tu gardes ton temps et ton meilleur taux.</p>
-          <div class="hero-cta stagger s4">
-            <a class="btn-or" href="https://pcjolicoeur.com/#contact">Prendre un rendez-vous</a>
-            <p class="cta-proof">Sans frais : le courtier est payé par le prêteur.</p>
-          </div>
+  <header class="topbar">
+    <img class="logo" src="assets/logo-light.png" alt="Groupe PC Jolicoeur" width="150" height="40">
+    <a class="top-tel" href="tel:4388675026">438 867-5026</a>
+  </header>
+
+  <!-- SCÈNES : une seule expérience continue, du rêve jusqu'aux clés.
+       Visuels du parcours client générés par IA (autorisation Dondi 2026-07-08), portrait réel de PC. -->
+  <div class="stage" id="stage" aria-hidden="true">
+    <div class="scene s-pc"><img src="assets/pc.webp" srcset="assets/pc-700.webp 700w, assets/pc.webp 1200w" sizes="100vw" alt="" width="1200" height="1500" fetchpriority="high" loading="eager"></div>
+    <div class="scene"><picture><source media="(min-width: 860px)" srcset="assets/scene1.webp"><img data-src="assets/scene1-m.webp" alt="" width="810" height="1440" loading="lazy"></picture></div>
+    <div class="scene"><picture><source media="(min-width: 860px)" srcset="assets/scene2.webp"><img data-src="assets/scene2-m.webp" alt="" width="810" height="1440" loading="lazy"></picture></div>
+    <div class="scene"><picture><source media="(min-width: 860px)" srcset="assets/scene3.webp"><img data-src="assets/scene3-m.webp" alt="" width="810" height="1440" loading="lazy"></picture></div>
+    <div class="scene"><picture><source media="(min-width: 860px)" srcset="assets/scene4.webp"><img data-src="assets/scene4-m.webp" alt="" width="810" height="1440" loading="lazy"></picture></div>
+  </div>
+
+  <main class="parcours">
+    <!-- 1 · L'AFFICHE -->
+    <section class="panneau" data-scene="0">
+      <div class="verre v-hero">
+        <p class="kicker">Courtiers hypothécaires · Québec</p>
+        <h1>Ton hypothèque,<br><span class="or">mon service.</span></h1>
+        <p class="lede">Du rêve jusqu'aux clés, PC et son équipe magasinent ton prêt auprès de la grande majorité des prêteurs.</p>
+        <div class="cta-row">
+          <a class="btn-or" href="https://pcjolicoeur.com/#contact">Prendre un rendez-vous</a>
         </div>
-        <img class="hero-portrait stagger s3" src="assets/pc.webp" srcset="assets/pc-700.webp 700w, assets/pc.webp 1200w" sizes="(min-width: 860px) 520px, 88vw" alt="Pierre-Charles Jolicoeur, courtier hypothécaire" width="1200" height="1500" fetchpriority="high" loading="eager">
-      </div>
-      <p class="hero-strip stagger s5" aria-hidden="true">HYPOTHÈQUE · PRÉQUALIFICATION · RENOUVELLEMENT · REFINANCEMENT · HYPOTHÈQUE · PRÉQUALIFICATION · RENOUVELLEMENT · REFINANCEMENT ·</p>
-    </section>
-
-    <!-- SERVICES — la question suivante de Marc-Antoine -->
-    <section class="services">
-      <h2 data-reveal>Ton projet, <span class="or">ton plan de match</span></h2>
-      <div class="service-grid">
-        <a class="s-card" href="https://pcjolicoeur.com/#contact" data-reveal><span class="s-num">01</span><h3>Préqualification</h3><p>Sache exactement combien tu peux emprunter avant de magasiner ta maison.</p><span class="s-go">Prendre un rendez-vous →</span></a>
-        <a class="s-card" href="https://pcjolicoeur.com/#contact" data-reveal><span class="s-num">02</span><h3>Renouvellement</h3><p>Ne signe pas la première offre de ta banque : fais-la comparer d'abord.</p><span class="s-go">Prendre un rendez-vous →</span></a>
-        <a class="s-card" href="https://pcjolicoeur.com/#contact" data-reveal><span class="s-num">03</span><h3>Refinancement</h3><p>Libère la valeur de ta propriété pour tes projets ou tes dettes.</p><span class="s-go">Prendre un rendez-vous →</span></a>
-        <a class="s-card" href="https://pcjolicoeur.com/#contact" data-reveal><span class="s-num">04</span><h3>Projet immobilier</h3><p>Plex, chalet, investissement : un plan monté par des courtiers qui en font des dizaines de millions par année.</p><span class="s-go">Prendre un rendez-vous →</span></a>
+        <p class="preuve">Sans frais : le courtier est payé par le prêteur.</p>
+        <p class="indice">Scrolle — l'histoire commence. <span aria-hidden="true">↓</span></p>
       </div>
     </section>
 
-    <!-- POURQUOI UN COURTIER — leurs propres réponses de FAQ, en clair -->
-    <section class="pourquoi">
-      <h2 data-reveal>Pourquoi passer par <span class="or">un courtier ?</span></h2>
-      <div class="arg-grid">
-        <article data-reveal><h3>Ça ne te coûte pas un sou.</h3><p>Le courtier est rémunéré directement par l'institution financière qui prend ton prêt. Et non, ton taux n'est pas plus élevé pour autant.</p></article>
-        <article data-reveal><h3>Un dossier, la majorité des prêteurs.</h3><p>Fini le magasinage interminable : ton dossier est présenté là où les conditions sont les plus avantageuses, y compris chez des prêteurs auxquels tu n'as pas accès directement.</p></article>
-        <article data-reveal><h3>Ton courtier te suit à vie.</h3><p>Pas de conseiller qui change à chaque visite en succursale : le même courtier pour ton achat, ton renouvellement et ton prochain projet.</p></article>
+    <!-- 2 · LE RÊVE -->
+    <section class="panneau" data-scene="1">
+      <div class="verre">
+        <p class="etape">01 · Le rêve</p>
+        <h2>Ça commence un soir, sur un site d'annonces.</h2>
+        <p class="lede">Avant la maison, il y a la question : « combien on peut se permettre ? » C'est exactement là qu'une préqualification change tout.</p>
+        <ul class="chips">
+          <li>Préqualification</li><li>Renouvellement</li><li>Refinancement</li><li>Projet immobilier</li>
+        </ul>
       </div>
     </section>
 
-    <!-- L'ÉQUIPE — vrais portraits -->
-    <section class="equipe">
-      <h2 data-reveal>Le groupe derrière <span class="or">le plan</span></h2>
-      <div class="team-grid">
-        <figure data-reveal><img src="assets/pc-700.webp" alt="Pierre-Charles Jolicoeur" width="700" height="875" loading="lazy"><figcaption><strong>Pierre-Charles Jolicoeur</strong><span>Courtier hypothécaire</span></figcaption></figure>
-        <figure data-reveal><img src="assets/kevin.webp" alt="Kevin Bolduc" width="640" height="800" loading="lazy"><figcaption><strong>Kevin Bolduc</strong><span>Courtier hypothécaire</span></figcaption></figure>
-        <figure data-reveal><img src="assets/nikolas.webp" alt="Nikolas Ouellet" width="640" height="800" loading="lazy"><figcaption><strong>Nikolas Ouellet</strong><span>Courtier hypothécaire</span></figcaption></figure>
+    <!-- 3 · LA RECHERCHE -->
+    <section class="panneau" data-scene="2">
+      <div class="verre">
+        <p class="etape">02 · La recherche</p>
+        <h2>La bonne maison, au bon montant.</h2>
+        <p class="lede">Pendant que tu visites, ton dossier travaille : présenté là où les conditions sont les plus avantageuses, y compris chez des prêteurs auxquels tu n'as pas accès directement.</p>
+        <ul class="args">
+          <li><strong>Ça ne te coûte pas un sou.</strong> Le courtier est payé par l'institution qui prend ton prêt.</li>
+          <li><strong>Un dossier, la majorité des prêteurs.</strong> Fini le magasinage interminable.</li>
+        </ul>
       </div>
-      <p class="equipe-note" data-reveal>Derrière eux : adjointe aux communications, souscripteur et directrice aux opérations, pour que ton dossier avance pendant que tu vis ta vie.</p>
     </section>
 
-    <!-- LA COMMUNAUTÉ — la preuve qu'aucune banque n'a -->
-    <section class="communaute">
-      <div class="commu-inner">
-        <img src="assets/duo.webp" alt="L'équipe PC Jolicoeur" width="1100" height="1375" loading="lazy" data-reveal>
-        <div class="commu-text" data-reveal>
-          <p class="kicker-or">Tu nous as probablement connus en ligne</p>
-          <h2>Le courtier que le Québec écoute chaque jour.</h2>
-          <p>Scénarios clients, notions de crédit, capacité d'emprunt : PC vulgarise l'hypothèque devant sa communauté sur TikTok et Instagram. Le même franc-parler s'applique à ton dossier.</p>
-          <p class="handles"><a href="https://www.tiktok.com/@pc.jolicoeur" rel="noopener">TikTok @pc.jolicoeur</a> · <a href="https://www.instagram.com/pc.jolicoeur" rel="noopener">Instagram @pc.jolicoeur</a></p>
+    <!-- 4 · PC ENTRE EN JEU -->
+    <section class="panneau" data-scene="3">
+      <div class="verre">
+        <p class="etape">03 · PC entre en jeu</p>
+        <h2>Le plan de match, négocié pour toi.</h2>
+        <p class="lede">Tu l'as connu par ses vidéos : le même franc-parler s'applique à ton dossier. Un groupe qui apporte des dizaines de millions par année négocie autrement qu'un client seul.</p>
+        <div class="equipe-mini">
+          <figure><img src="assets/pc-700.webp" alt="Pierre-Charles Jolicoeur" width="700" height="875" loading="lazy"><figcaption>Pierre-Charles</figcaption></figure>
+          <figure><img src="assets/kevin.webp" alt="Kevin Bolduc" width="640" height="800" loading="lazy"><figcaption>Kevin</figcaption></figure>
+          <figure><img src="assets/nikolas.webp" alt="Nikolas Ouellet" width="640" height="800" loading="lazy"><figcaption>Nikolas</figcaption></figure>
         </div>
+        <p class="handles"><a href="https://www.tiktok.com/@pc.jolicoeur" rel="noopener">TikTok @pc.jolicoeur</a> · <a href="https://www.instagram.com/pc.jolicoeur" rel="noopener">Instagram @pc.jolicoeur</a></p>
       </div>
     </section>
 
-    <!-- FAQ EN CLAIR (plus rien de caché) -->
-    <section class="faq">
-      <h2 data-reveal>Les questions que tout le monde <span class="or">pose</span></h2>
-      <dl class="faq-grid">
-        <div data-reveal><dt>Combien coûte un courtier hypothécaire ?</dt><dd>Généralement pas un sou : il est rémunéré par l'institution financière, selon le prêt apporté. Ton taux n'est pas plus élevé pour autant.</dd></div>
-        <div data-reveal><dt>Comment un courtier a accès à de meilleurs taux ?</dt><dd>Un groupe qui apporte des dizaines de millions de dollars de financement par année négocie autrement qu'un client seul avec un prêt.</dd></div>
-        <div data-reveal><dt>Peut-il m'accompagner sur plusieurs projets ?</dt><dd>Oui : le même courtier pour ton achat, ton renouvellement et la suite. Fini de recommencer à zéro avec un nouveau conseiller.</dd></div>
-        <div data-reveal><dt>Les scénarios clients des vidéos, c'est vrai ?</dt><dd>Ce sont des histoires fictives inspirées de faits réels, conçues pour informer : crédit, capacité d'emprunt, endettement.</dd></div>
-      </dl>
-    </section>
-
-    <!-- CLOSING -->
-    <section class="closing" data-reveal>
-      <h2>Ta banque t'offre un taux.<br><span class="or">Nous, on les compare.</span></h2>
-      <a class="btn-or" href="https://pcjolicoeur.com/#contact">Prendre un rendez-vous</a>
-      <p class="closing-contact"><a href="tel:4388675026">438 867-5026</a> · <a href="mailto:demande@pcjolicoeur.com">demande@pcjolicoeur.com</a></p>
+    <!-- 5 · LES CLÉS -->
+    <section class="panneau" data-scene="4">
+      <div class="verre">
+        <p class="etape">04 · Les clés</p>
+        <h2>Ta banque t'offre un taux.<br><span class="or">Nous, on les compare.</span></h2>
+        <div class="cta-row">
+          <a class="btn-or" href="https://pcjolicoeur.com/#contact">Prendre un rendez-vous</a>
+        </div>
+        <p class="preuve"><a href="tel:4388675026">438 867-5026</a> · <a href="mailto:demande@pcjolicoeur.com">demande@pcjolicoeur.com</a> · Saint-Hubert, Québec</p>
+        <p class="credit">Concept non affilié — démonstration par <a href="https://www.dondisanteme.com" rel="noopener">Dondi Santeme</a>. Visuels du parcours générés par IA ; portraits réels de l'équipe.</p>
+      </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <img class="logo" src="assets/logo-light.png" alt="Groupe PC Jolicoeur" width="160" height="42" loading="lazy">
-    <address>Saint-Hubert, Québec (J3Z 0G7) · <a href="tel:4388675026">438 867-5026</a> · <a href="mailto:demande@pcjolicoeur.com">demande@pcjolicoeur.com</a></address>
-    <p class="socials"><a href="https://www.tiktok.com/@pc.jolicoeur" rel="noopener">TikTok</a> · <a href="https://www.instagram.com/pc.jolicoeur" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/pcjolicoeur1" rel="noopener">Facebook</a></p>
-    <p class="credit">Concept de refonte non affilié — démonstration par <a href="https://www.dondisanteme.com" rel="noopener">Dondi Santeme</a></p>
-  </footer>
-
-  <!-- MAISON 3D : CSS 3D pur (zéro librairie). Suit le visiteur au scroll,
-       réagit au pointeur, tourne en continu. aria-hidden, pointer-events none. -->
+  <!-- MAISON 3D : CSS 3D pur, suit le visiteur du rêve jusqu'aux clés -->
   <div class="maison3d" aria-hidden="true">
     <div class="m-pivot" id="mPivot">
       <div class="m-face m-front"><span class="m-porte"></span></div>
