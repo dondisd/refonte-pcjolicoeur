@@ -109,6 +109,22 @@
     <p class="credit">Concept de refonte non affilié — démonstration par <a href="https://www.dondisanteme.com" rel="noopener">Dondi Santeme</a></p>
   </footer>
 
+  <!-- MAISON 3D : CSS 3D pur (zéro librairie). Suit le visiteur au scroll,
+       réagit au pointeur, tourne en continu. aria-hidden, pointer-events none. -->
+  <div class="maison3d" aria-hidden="true">
+    <div class="m-pivot" id="mPivot">
+      <div class="m-face m-front"><span class="m-porte"></span></div>
+      <div class="m-face m-back"></div>
+      <div class="m-face m-left"><span class="m-fenetre"></span></div>
+      <div class="m-face m-right"><span class="m-fenetre"></span></div>
+      <div class="m-face m-bottom"></div>
+      <div class="m-toit m-toit-g"></div>
+      <div class="m-toit m-toit-d"></div>
+      <div class="m-pignon m-pignon-f"></div>
+      <div class="m-pignon m-pignon-b"></div>
+    </div>
+  </div>
+
   <script src="app.js" defer></script>
 </body>
 </html>

@@ -149,6 +149,68 @@ section h2 { font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1.04; margin-bott
 .credit { font-size: 0.8rem; color: rgba(244, 239, 230, 0.66); border-top: 1px solid var(--filet); padding-top: 20px; margin-top: 24px; }
 .credit a { color: rgba(244, 239, 230, 0.85); }
 
+/* ---------- Maison 3D (CSS 3D pur, zéro librairie) ---------- */
+.maison3d {
+  position: fixed; right: 10px; bottom: 16px; z-index: 60;
+  width: 150px; height: 150px;
+  perspective: 640px; pointer-events: none;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
+}
+.m-pivot {
+  position: absolute; left: 50%; top: 58%;
+  width: 0; height: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.m-face, .m-toit, .m-pignon {
+  position: absolute;
+  background: rgba(23, 21, 18, 0.72);
+  border: 1.5px solid var(--or);
+  box-shadow: inset 0 0 18px rgba(201, 162, 90, 0.12);
+}
+/* Cube 92 (L) x 62 (H) x 64 (P), centré sur le pivot */
+.m-front  { width: 92px; height: 62px; transform: translate(-46px, -31px) translateZ(32px); }
+.m-back   { width: 92px; height: 62px; transform: translate(-46px, -31px) rotateY(180deg) translateZ(32px); }
+.m-left   { width: 64px; height: 62px; transform: translate(-32px, -31px) rotateY(-90deg) translateZ(46px); }
+.m-right  { width: 64px; height: 62px; transform: translate(-32px, -31px) rotateY(90deg) translateZ(46px); }
+.m-bottom { width: 92px; height: 64px; transform: translate(-46px, -32px) rotateX(90deg) translateZ(31px); }
+/* Toit : deux pans (pente ~51° du mur) + deux pignons triangulaires */
+.m-toit { width: 92px; height: 41px; transform-origin: 50% 100%; background: rgba(201, 162, 90, 0.16); }
+.m-toit-g { transform: translate(-46px, -72px) translateZ(32px) rotateX(-51deg); }
+.m-toit-d { transform: translate(-46px, -72px) rotateY(180deg) translateZ(32px) rotateX(-51deg); }
+.m-pignon {
+  width: 64px; height: 26px; border: none;
+  background: rgba(23, 21, 18, 0.8);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  border-bottom: 1.5px solid var(--or);
+}
+.m-pignon::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(var(--or), var(--or)) top center / 2px 100% no-repeat;
+  opacity: 0.9;
+}
+.m-pignon-f { transform: translate(-32px, -57px) rotateY(90deg) translateZ(46px); }
+.m-pignon-b { transform: translate(-32px, -57px) rotateY(-90deg) translateZ(46px); }
+.m-porte {
+  position: absolute; left: 50%; bottom: 0; width: 20px; height: 34px;
+  transform: translateX(-50%);
+  border: 1.5px solid var(--or); border-bottom: none;
+  background: rgba(201, 162, 90, 0.22);
+}
+.m-fenetre {
+  position: absolute; left: 50%; top: 50%; width: 18px; height: 18px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--or);
+  background:
+    linear-gradient(var(--or), var(--or)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--or), var(--or)) center / 1.5px 100% no-repeat,
+    rgba(201, 162, 90, 0.14);
+}
+
+/* Cartes services : micro-3D au survol */
+.s-card:hover, .s-card:focus-visible { transform: perspective(700px) rotateX(2.4deg) translateY(-4px); }
+
 /* Reveals */
 [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 [data-reveal].in { opacity: 1; transform: translateY(0); }
