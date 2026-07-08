@@ -49,7 +49,8 @@ h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transf
 .logo { width: 124px; height: auto; }
 .nav-droite { display: flex; align-items: center; gap: 14px; }
 .heure { display: none; font-size: 0.82rem; color: var(--gris); }
-.top-tel { font-weight: 700; font-size: 0.9rem; text-decoration: none; border-bottom: 2px solid var(--or); padding-bottom: 2px; }
+.top-tel { display: none; font-weight: 700; font-size: 0.9rem; white-space: nowrap; text-decoration: none; border-bottom: 2px solid var(--or); padding-bottom: 2px; }
+@media (min-width: 560px) { .top-tel { display: inline; } }
 
 /* ---------- Bouton « text-roll » + cercle-flèche qui pivote (réf. Axion) ---------- */
 .btn-roll {
