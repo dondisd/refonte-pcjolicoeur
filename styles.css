@@ -96,7 +96,7 @@ h1, h2, .s-num { font-family: 'Anton', sans-serif; font-weight: 400; text-transf
   background: linear-gradient(180deg, rgba(14, 13, 11, 0.4) 0%, rgba(14, 13, 11, 0.12) 40%, rgba(14, 13, 11, 0.62) 100%);
 }
 .finale { align-items: center; }
-.finale .imm-bg { object-position: 50% 50%; }
+.finale .imm-bg { object-position: 50% 12%; }
 
 .verre {
   position: relative;
@@ -145,7 +145,8 @@ section h2 { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: 26px; }
 /* Le groupe → page dédiée (disposition Axion about) */
 .groupe-grille { display: grid; gap: 22px; align-items: center; }
 .groupe-texte .lede { max-width: 52ch; margin-bottom: 20px; }
-.groupe-img { width: 100%; height: auto; border-radius: 14px; max-height: 420px; object-fit: cover; object-position: 50% 30%; }
+.groupe-tri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.groupe-tri img { width: 100%; height: 200px; object-fit: cover; object-position: 50% 14%; border-radius: 12px; }
 
 /* Pages internes */
 .page-interne { padding-top: 30px; }
